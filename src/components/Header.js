@@ -10,7 +10,7 @@ const Header = () => {
         </div>
             <div className='w-full max-w-sm min-w-[600px]'>
             <div className='relative flex mx-6 my-6 py-6 px-6'>
-                <input type ="search" className='w-full bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-white hover:border-slate-300 shadow-sm focus:shadow'  placeholder='Search by Books,Authors..'/>
+                <input type ="search" className='w-full bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-black hover:border-slate-300 shadow-sm focus:shadow'  placeholder='Search by Books,Authors..'/>
                 <button 
                      className='absolute top-0 right-0 m-6 flex items-center rounded bg-slate-800 py-2.5 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
                     type='button'
@@ -23,8 +23,8 @@ const Header = () => {
         </div>
         
         <div className='flex p-5'>
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[120px]'/>
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[100px] px-2 py-6' alt='login'/>
+            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2'/>
+            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-6' alt='login'/>
         </div>
         </div>
     </div>
