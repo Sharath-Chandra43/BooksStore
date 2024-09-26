@@ -16,4 +16,11 @@
     - second Container 
          - List of new Books
          - filter with prize 
-    
+
+# Redux Toolkit 
+- Install @reduxjs/toolkit and react-redux 
+- Build our Store 
+- Connect Our Store To Our App 
+- Slice (Creating a Slice)
+- dispatch(Action *Dispatching an Anction)
+- Selector  

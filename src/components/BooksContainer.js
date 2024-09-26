@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BookCard from './BookCard';
 import ShimmerUI from './ShimmerUI';
+import { BOOKS_API } from '../utils/constant';
 
 const BooksContainer = () => {
   const [newBooks,setNewBooks]=useState(null);
@@ -11,7 +12,7 @@ const BooksContainer = () => {
 
   const fetchBooks= async()=>{
     try{
-    const response= await fetch("https://api.itbook.store/1.0/new");
+    const response= await fetch(BOOKS_API);
 
     const data=await response.json();
     //console.log(accurateData)

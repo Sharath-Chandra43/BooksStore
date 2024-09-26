@@ -1,43 +1,50 @@
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import './App.css';
 import Body from './components/Body';
-import Header from './components/Header';
+import { Provider } from 'react-redux';
+import appStore from './utils/appStore';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './components/Login';
+import MainContainer from './components/MainContainer';
 import SearchedBooks from './components/SearchedBooks';
 import Cart from './components/Cart';
+import Header from './components/Header';
 
-import MainContainer from './components/MainContainer';
-
-const appRouter=createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
-      path:'/',
-      element:<Body/>,
-      children:[
-        {
-          path:'/',
-          element:<MainContainer />
-        }
-        ,
-        {
-          path:'/search',
-          element:<SearchedBooks />
-        },
-        {
-          path:'/cart',
-          element:<Cart />
-        }
-      ]
+    
+    path: "/login",
+    element: <Login />,
   },
-  
-])
+  {
+    path: "/cart",
+    element:<Cart/> ,
+  },
 
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "/",
+        element: <MainContainer />,
+      },
+      {
+        path: "/",
+        element: <SearchedBooks/>,
+      },
+      // Add other nested routes here
+    ],
+  },
+]);
 
 function App() {
   return (
     <div>
-      <Header />
-      <RouterProvider router={appRouter} />
+      <Provider store={appStore}>
+        <RouterProvider router={appRouter} />
+      </Provider>
     </div>
   );
 }

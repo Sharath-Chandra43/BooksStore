@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BOOKS_API } from '../utils/constant';
 
 function TopBookContainer() {
   const [book, setBook] = useState(null);
@@ -9,7 +10,7 @@ function TopBookContainer() {
 
   const fetchRandomBook = async () => {
       try {
-        const response = await fetch('https://api.itbook.store/1.0/new')
+        const response = await fetch(BOOKS_API)
 
         const data = await response.json();
       //  console.log(data.books[0]);
