@@ -16,8 +16,8 @@ const BookCard = (props) => {
   const dispatch=useDispatch()
 
      
-      const handleAddItem=(booksData)=>{
-      dispatch(addItem(booksData));
+  const handleAddItem=(booksData)=>{
+    dispatch(addItem(booksData));
   }
 
 
@@ -25,7 +25,7 @@ const BookCard = (props) => {
     <div>
       <div className=" max-w-sm rounded overflow-hidden border border-zinc-300  m-4 p-3 w-[250px]  shadow-lg ">
        <img src={image} alt='bookimage' className="w-[80%] m-3 object-cover " />
-      <div className=" ">
+      <div >
         <div className="font-normal mb-2 ">{title}</div>
         <p className=" text-base  mb-4 text-green-700">{subtitle}</p>
         <p className="text-gray-900 font-serif text-xl">{price}</p>

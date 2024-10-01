@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
-import { clearCart, removeItem } from "../utils/cartSlice";
+import {  clearCart } from "../utils/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+
   console.log(cartItems);
 
   const dispatch=useDispatch();
@@ -12,10 +13,10 @@ const Cart = () => {
     dispatch(clearCart());
   }
 
-  const handleRemove=(isbn13)=>{
-    console.log(isbn13);
-    dispatch(removeItem(isbn13));
-  }
+
+
+
+
 
   return (
     <>
@@ -23,7 +24,7 @@ const Cart = () => {
       <div className="text-center m-4 p-4 ">
         <h1 className="text-2xl font-bold  ">My Books Cart</h1>
         {cartItems.length===0 && <h1 className="text-red-700 font-bold">Your Cart IS "MT"</h1>}
-        <div className="flex p-14">
+        <div className="flex flex-wrap p-14">
         {cartItems.map((item) => (
           <div key={item.id}>
             <div className=" max-w-sm rounded overflow-hidden border border-zinc-300  m-4 p-3 w-[250px]  shadow-lg ">
@@ -34,13 +35,17 @@ const Cart = () => {
             <p className="text-gray-900 font-serif text-xl">{item.price}</p>
         <div>
             <button className="bg-black text-white p-2 m-3 rounded-lg text-[10px] hover:bg-red-600 hover:text-black">Buy Now</button>
-            <button className="  p-2 m-3 rounded-lg text-[10px] bg-red-600 text-white" onClick={handleRemove}>remove</button>
+           
         </div>
       </div>
+      
    </div>
+
 </div>
         ))}
+       
         </div>
+
 
         <button className="p-2 m-2 bg-black text-white rounded" onClick={handleClearCart} >Clear Cart</button>
       </div>

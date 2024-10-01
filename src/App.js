@@ -1,54 +1,52 @@
-
-
-import './App.css';
-import Body from './components/Body';
-import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Provider, useDispatch } from 'react-redux';
 import appStore from './utils/appStore';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider, useNavigate } from 'react-router-dom';
 import Login from './components/Login';
 import MainContainer from './components/MainContainer';
 import SearchedBooks from './components/SearchedBooks';
 import Cart from './components/Cart';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from './utils/firebase';
+import { addUser, removeUser } from './utils/userSlice';
 import Header from './components/Header';
+import Body from './components/Body';
+
+function App() {
+ 
+
+  return (
+    <div>
+      <RouterProvider router={appRouter}>
+        <Body />
+      </RouterProvider>
+    </div>
+  );
+}
 
 const appRouter = createBrowserRouter([
-  {
-    
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/cart",
-    element:<Cart/> ,
-  },
-
   {
     path: "/",
     element: <Body />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <MainContainer />,
       },
       {
-        path: "/",
-        element: <SearchedBooks/>,
+        path: "/search",
+        element: <SearchedBooks />,
       },
-      // Add other nested routes here
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
 ]);
-
-function App() {
-  return (
-    <div>
-      <Provider store={appStore}>
-        <RouterProvider router={appRouter} />
-      </Provider>
-    </div>
-  );
-}
-
-
 
 export default App;
