@@ -8,6 +8,7 @@ const Header = () => {
   const [searchText, setSearchText] = useState('');
   const navigate = useNavigate();
   const cartItems = useSelector((store) => store.cart.items);
+  const [isOpen, setIsOpen] = useState(false); // State for menu visibility
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -22,6 +23,10 @@ const Header = () => {
     navigate(`/search?query=${searchText}`);
   };
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen); // Toggle menu visibility on button click
+  };
+
   return (
     <div className='bg-yellow-500 px-4 flex flex-col'> {/* Base styles */}
       <div className='flex justify-between items-center'> {/* Top row */}
@@ -29,8 +34,8 @@ const Header = () => {
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png" alt='logo' className='w-full sm:w-[180px]' />
         </Link>
 
-        <div className='hidden md:flex'> {/* Search bar for large screens */}
-          <form onSubmit={handleSearch}>
+        <div className='flex items-center'> {/* Search bar for all screens */}
+          <form onSubmit={handleSearch} className={`${isOpen ? 'block' : 'hidden'} md:block`}>
             <input
               type="search"
               value={searchText}
@@ -40,7 +45,7 @@ const Header = () => {
             />
             <button
               type="submit"
-              className='fixed, absolute right-18 top-2 m-6 ml-96 flex items-center rounded bg-slate-800 py-1 px-1 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
+              className='fixed, absolute right-18 top-4 m-6 ml-96 flex items-center rounded bg-slate-800 py-1 px-1 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +63,11 @@ const Header = () => {
           </form>
         </div>
 
-        <div className='flex md:hidden items-center'> 
-          <button className='text-white focus:outline-none'>
+        <div className='md:hidden flex items-center'> {/* Menu button for small screens */}
+          <button
+            className='text-white focus:outline-none'
+            onClick={toggleMenu}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -70,9 +78,19 @@ const Header = () => {
               strokeLinejoin="round"
               className="w-8 h-8"
             >
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
+              {isOpen ? (
+                <path
+                  fillRule="evenodd"
+                  d="M4.707 3.707a.707.707 0 00-1.001 1.001l16 16a.707.707 0 001.001-1.001L4.707 3.707zM17 11H7a1 1 0 000 2h10a1 1 0 000-2z"
+                  clipRule="evenodd"
+                />
+              ) : (
+                <>
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </>
+              )}
             </svg>
           </button>
         </div>
@@ -86,22 +104,22 @@ const Header = () => {
         </div>
 
         <div className='flex items-center flex-row-reverse'>
-        <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
+          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
 
-        <Link to="/cart">
-            <span className='absolute top-4 left-470  bg-red-500 text-black font-bold text-2xl rounded-full px-2'>
+          <Link to="/cart">
+            <span className='absolute top-4 left-470  bg-red-500 text-black font-bold text-2xl rounded-full px-2'>
               {cartItems.length}
             </span>
             <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
           </Link>
           <Link to="/login">
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
+            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%B2%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
           </Link>
         </div>
       </div>
 
       {/* Menu content for small screens (to be displayed when the menu button is clicked) */}
-      <div className='hidden md:hidden'>
+      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
         <ul className='mt-4 space-y-2'>
           <li><Link to="/" className='text-white hover:text-gray-800'>Home</Link></li>
           <li><Link to="/about" className='text-white hover:text-gray-800'>About</Link></li>
@@ -110,6 +128,6 @@ const Header = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Header;
+  export default Header;
