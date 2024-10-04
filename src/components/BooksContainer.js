@@ -1,35 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import BookCard from './BookCard';
-import ShimmerUI from './ShimmerUI';
+import ShimmerUI from './ShimmerUI'; // Assuming ShimmerUI component
 import { BOOKS_API } from '../utils/constant';
 
 const BooksContainer = () => {
-  const [newBooks,setNewBooks]=useState(null);
-  
+  const [newBooks, setNewBooks] = useState(null);
+
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  const fetchBooks= async()=>{
-    try{
-    const response= await fetch(BOOKS_API);
-
-    const data=await response.json();
-    //console.log(accurateData)
-    const accurateData=data.books
-   setNewBooks(accurateData)
-    }
-    catch(error){
+  const fetchBooks = async () => {
+    try {
+      const response = await fetch(BOOKS_API);
+      const data = await response.json();
+      const accurateData = data.books;
+      setNewBooks(accurateData);
+    } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
-    
-  <div className="">
-        <h1 className='font-bold text-2xl text-center'>New Collections</h1>
-  <div className='px-12 flex flex-wrap'>
+    <>
+      <h1 className="font-bold md:text-2xl text-center xs:text-4xl xs:mt-32">New Collections</h1>
+      <div
+        className={`grid gap-4 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center px-4 py-12`} 
+      >
         {newBooks === null ? (
           <ShimmerUI />
         ) : newBooks.length === 0 ? (
@@ -40,9 +37,8 @@ const BooksContainer = () => {
           ))
         )}
       </div>
-      </div>
+    </>
   );
 };
 
-
-export default BooksContainer
+export default BooksContainer;

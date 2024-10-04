@@ -11,6 +11,8 @@ import { auth } from './utils/firebase';
 import { addUser, removeUser } from './utils/userSlice';
 import Header from './components/Header';
 import Body from './components/Body';
+import About from './components/About';
+import Contact from './components/Contact';
 
 function App() {
  
@@ -46,6 +48,14 @@ const appRouter = createBrowserRouter([
   {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
 ]);
 

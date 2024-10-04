@@ -65,7 +65,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className='absolute w-full'>
+      <div className='absolute w-screen'>
         <img src="https://static.vecteezy.com/system/resources/thumbnails/039/830/455/small_2x/ai-generated-an-open-book-photo.jpg" alt='background' className=' w-full' />
       </div>
       <form onSubmit={(e) => e.preventDefault()}className=' w-3/6 p-24   rounded-lg absolute mx-auto right-0 left-0 my-32 '>
