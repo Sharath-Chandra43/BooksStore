@@ -24,9 +24,9 @@ const Cart = () => {
       <div className="text-center m-4 p-4 ">
         <h1 className="text-2xl font-bold  ">My Books Cart</h1>
         {cartItems.length===0 && <h1 className="text-red-700 font-bold">Your Cart IS "MT"</h1>}
-        <div className="flex flex-wrap p-14">
+        <div className="flex  flex-wrap  p-14">
         {cartItems.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="flex flex-col justify-between">
             <div className=" max-w-sm rounded overflow-hidden border border-zinc-300  m-4 p-3 w-[250px]  shadow-lg ">
                 <img src={item.image} alt='bookimage' className="w-[80%] m-3 object-cover " />
         <div className=" ">

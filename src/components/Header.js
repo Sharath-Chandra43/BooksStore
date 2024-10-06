@@ -1,7 +1,7 @@
-import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth'; // Assuming you're using Firebase for authentication
 import { auth } from '../utils/firebase';
 
 const Header = () => {
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-yellow-500 px-4 flex flex-col'> {/* Base styles */}
+    <div className='bg-yellow-500 px-4 flex flex-col w-screen'> {/* Base styles */}
       <div className='flex justify-between items-center'> {/* Top row */}
         <Link to="/">
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png" alt='logo' className='w-full sm:w-[180px]' />
@@ -36,16 +36,27 @@ const Header = () => {
 
         <div className='flex items-center'> {/* Search bar for all screens */}
           <form onSubmit={handleSearch} className={`${isOpen ? 'block' : 'hidden'} md:block`}>
+            <div className='flex relative'>
+              <div>
             <input
               type="search"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className='w-[450px] bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-black hover:border-slate-300 shadow-sm focus:shadow'
+              className={`
+                xs:w-[150px]  /* Extra small screens (up to 359px) */
+                sm:w-[250px]  /* Small screens (360px up to 639px) */
+                
+                bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-black hover:border-slate-300 shadow-sm focus:shadow
+              `}
               placeholder='Search by Books,Authors..'
             />
+            </div>
+            <div  className='absolute -right-4'>
             <button
               type="submit"
-              className='fixed, absolute right-18 top-4 m-6 ml-96 flex items-center rounded bg-slate-800 py-1 px-1 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
+              className={`
+                  flex items-center rounded bg-slate-800 py-1 px-0 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none
+              `}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,14 +71,13 @@ const Header = () => {
                 />
               </svg>
             </button>
+            </div>
+            </div>
           </form>
         </div>
 
         <div className='md:hidden flex items-center'> {/* Menu button for small screens */}
-          <button
-            className='text-white focus:outline-none'
-            onClick={toggleMenu}
-          >
+          <button className='text-white focus:outline-none' onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -107,19 +117,24 @@ const Header = () => {
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
 
           <Link to="/cart">
-            <span className='absolute top-4 left-470  bg-red-500 text-black font-bold text-2xl rounded-full px-2'>
-              {cartItems.length}
+          <span className='absolute top-4 left-470  bg-red-500 text-black font-bold text-2xl rounded-full px-2'>
+          {cartItems.length}
+
             </span>
             <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
           </Link>
           <Link to="/login">
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%B2%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
+          <span>
+           
+          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
+          </span>
           </Link>
         </div>
       </div>
 
       {/* Menu content for small screens (to be displayed when the menu button is clicked) */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
+        
         <ul className='mt-4 space-y-2'>
           <li><Link to="/" className='text-white hover:text-gray-800'>Home</Link></li>
           <li><Link to="/about" className='text-white hover:text-gray-800'>About</Link></li>

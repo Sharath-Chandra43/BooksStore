@@ -1,7 +1,10 @@
 import React from 'react'
+import Header from './Header'
 
 const About = () => {
   return (
+    <>
+    <Header />
     <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-center mb-8">About Us</h1>
   <p class="text-lg text-gray-700 mb-4">
@@ -12,6 +15,7 @@ const About = () => {
     
   </div>
 </div>
+</>
   )
 }
 

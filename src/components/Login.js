@@ -64,7 +64,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className=' '>
       <div className='absolute w-screen'>
         <img src="https://static.vecteezy.com/system/resources/thumbnails/039/830/455/small_2x/ai-generated-an-open-book-photo.jpg" alt='background' className=' w-full' />
       </div>
