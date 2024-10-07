@@ -22,7 +22,7 @@ const BookCard = ({ booksData }) => {
           <p className="text-base mb-4 text-green-700 xs:text-xl">{subtitle}</p>
           <p className="text-gray-900 font-serif text-xl xs:text-xl">{price}</p>
           <button
-            className="xs:p-4 xs:text-xl md:p-2 md:m-3 bg-black text-white rounded-lg hover:bg-yellow-400 hover:text-black"
+            className="xs:px-2 xs:py-2 xs:text-xs xl:mt-6 md:p-2 md:m-3 bg-black text-white rounded-lg hover:bg-yellow-400 hover:text-black"
             onClick={() => handleAddItem(booksData)} 
           >
             Add to Cart
