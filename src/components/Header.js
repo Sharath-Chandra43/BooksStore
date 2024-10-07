@@ -94,7 +94,7 @@ const Header = () => {
           </ul>
         </div>
 
-        <div className='flex flex-row-reverse items-center'>
+        <div className='flex flex-row-reverse items-center sm:hidden xs:hidden md:flex hidden'>
           <Link to="/login">
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
           </Link>
@@ -114,12 +114,30 @@ const Header = () => {
 
       {/* Menu content for small screens (to be displayed when the menu button is clicked) */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <ul className='mt-4 space-y-2'>
+        <ul className='mt-4  flex justify-start '>
           <li><Link to="/" className='text-white hover:text-gray-800'>Home</Link></li>
-          <li><Link to="/about" className='text-white hover:text-gray-800'>About</Link></li>
-          <li><Link to="/contact" className='text-white hover:text-gray-800'>Contact</Link></li>
+          <li><Link to="/about" className='text-white hover:text-gray-800 ml-2'>About</Link></li>
+          <li><Link to="/contact" className='text-white hover:text-gray-800 ml-2'>Contact</Link></li>
         </ul>
       </div>
+
+
+      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden flex mt-5 `}>
+          <Link to="/login">
+          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
+          </Link>
+          <Link to="/cart">
+            <span className='absolute top-34 left-470 bg-red-700 text-white font-bold text-xl rounded-full px-2'>
+              {cartItems.length}
+            </span>
+            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
+          </Link>
+          <Link>
+            <span>
+              <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
+            </span>
+          </Link>
+        </div>
     </div>
   );
 };
