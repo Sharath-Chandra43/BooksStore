@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
- 
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -23,52 +23,47 @@ const Login = () => {
     if (email.current) {
       const message = checkValidData(email.current?.value, password.current?.value, name.current?.value);
       setErrorMessage(message);
-  
+
       if (message) return;
-  
+
       if (!isSignInForm) {
         // Sign Up
         createUserWithEmailAndPassword(auth, email.current?.value, password.current.value)
           .then((userCredential) => {
             // Signed up
             const user = userCredential.user;
-            navigate('/')
+            navigate('/');
             console.log(user);
-            
-
-            // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             setErrorMessage(errorMessage);
-            // ...
           });
       } else {
         // Sign In Login
-      signInWithEmailAndPassword(auth, email.current?.value, password.current.value)
-        .then((userCredential) => {
-          // Signed in 
-        const user = userCredential.user;
-        navigate('/')
-        console.log(user);
-          // ...
-      })
-        .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+        signInWithEmailAndPassword(auth, email.current?.value, password.current.value)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            navigate('/');
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorMessage);
+          });
+      }
     }
-  }
-      
   };
 
   return (
-    <div className=' '>
-      <div className='absolute w-screen'>
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/039/830/455/small_2x/ai-generated-an-open-book-photo.jpg" alt='background' className=' w-full' />
+    <div className=''>
+      <div className='fixed top-0 left-0 w-full h-full overflow-hidden'> {/* Ensures background fills entire viewport */}
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/039/830/455/small_2x/ai-generated-an-open-book-photo.jpg" alt='background' className=' w-full h-full object-cover' /> {/* Adjust object-cover for different fit options */}
       </div>
-      <form onSubmit={(e) => e.preventDefault()}className=' w-3/6 p-24   rounded-lg absolute mx-auto right-0 left-0 my-32 '>
+      <form onSubmit={(e) => e.preventDefault()} className=' w-3/6 p-24 rounded-lg absolute mx-auto right-0 left-0 my-32 '>
         <h1 className='text-3xl font-bold text-black mb-4'>{isSignInForm ? "Sign In" : "Sign Up" }</h1>
         {!isSignInForm && (<input type="text" placeholder="Full Name" className="p-2 m-2 rounded-lg" ref={name} />)}
         <input type="text" placeholder="Email Address" className="p-2 m-2 rounded-lg  text-black " ref={email} />

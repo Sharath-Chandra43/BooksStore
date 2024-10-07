@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-yellow-500 px-4 flex flex-col w-screen'> {/* Base styles */}
+    <div className='bg-yellow-500 px-4 flex flex-col '> {/* Base styles */}
       <div className='flex justify-between items-center'> {/* Top row */}
         <Link to="/">
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png" alt='logo' className='w-full sm:w-[180px]' />
