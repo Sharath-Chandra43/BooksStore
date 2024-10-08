@@ -4,7 +4,7 @@ import Header from './Header'
 const Contact = () => {
   return (
     <>
-    <Header />
+    
     <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-center mb-8">Contact Us</h1>
   <div class="flex flex-col md:flex-row justify-center">

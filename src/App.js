@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Body from './components/Body';
 import About from './components/About';
 import Contact from './components/Contact';
+import Books from './components/Books';
 
 function App() {
  
@@ -39,24 +40,29 @@ const appRouter = createBrowserRouter([
         path: "/search",
         element: <SearchedBooks />,
       },
+      {
+        path: "/books/:bookid",
+        element: <Books />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
     ],
   },
   {
     path: "/login",
     element: <Login />,
   },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
+  
 ]);
 
 export default App;

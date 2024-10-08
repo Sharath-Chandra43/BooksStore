@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BookCard from './BookCard';
 import ShimmerUI from './ShimmerUI'; // Assuming ShimmerUI component
 import { BOOKS_API } from '../utils/constant';
+import { Link } from 'react-router-dom';
 
 const BooksContainer = () => {
   const [newBooks, setNewBooks] = useState(null);
@@ -33,7 +34,9 @@ const BooksContainer = () => {
           <p>No results found.</p>
         ) : (
           newBooks.map((book) => (
-            <BookCard booksData={book} key={book.isbn13} />
+            <Link to= {"/books/"+book.isbn13} key={book.isbn13}>
+              <BookCard booksData={book}  />
+            </Link>
           ))
         )}
       </div>

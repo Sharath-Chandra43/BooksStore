@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import BookCard from './BookCard';
 
 const SearchedBooks = () => {
@@ -24,7 +24,9 @@ const SearchedBooks = () => {
   return (
     <div className="flex flex-wrap ">
       {searchResults.map((book) => (
-        <BookCard key={book.isbn13} booksData={book} />
+         <Link to= {"/books/"+book.isbn13} key={book.isbn13}>
+            <BookCard  booksData={book} />
+        </Link>
       ))}
     </div>
   );
