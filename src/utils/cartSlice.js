@@ -7,14 +7,30 @@ const cartSlice=createSlice({
         items:[]
     },
     reducers:{
-        addItem:(state,action)=>{
-            state.items.push(action.payload);
-        },
-        removeItem: (state,   
-            action) => {
-                 state.items = state.items.filter(item => item.isbn13 !== action.payload);   
-           
-               },
+        addItem: (state, action) => {
+            const existingItem = state.items.find(
+              (item) => item.isbn13 === action.payload.isbn13
+            );
+      
+            if (existingItem) {
+              existingItem.quantity += 1;
+            } else {
+              state.items.push({ ...action.payload, quantity: 1 });
+            }
+          },
+          removeItem: (state, action) => {
+            const existingItem = state.items.find(
+              (item) => item.isbn13 === action.payload.isbn13
+            );
+      
+            if (existingItem && existingItem.quantity > 1) {
+              existingItem.quantity -= 1;
+            } else {
+              state.items = state.items.filter(
+                (item) => item.isbn13 !== action.payload.isbn13
+              );
+            }
+          },
         clearCart:(state,action)=>{
             state.items.length=0;
         }, 
