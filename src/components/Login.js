@@ -63,14 +63,14 @@ const Login = () => {
       <div className='fixed top-0 left-0 w-full h-full overflow-hidden'> {/* Ensures background fills entire viewport */}
         <img src="https://static.vecteezy.com/system/resources/thumbnails/039/830/455/small_2x/ai-generated-an-open-book-photo.jpg" alt='background' className=' w-full h-full object-cover' /> {/* Adjust object-cover for different fit options */}
       </div>
-      <form onSubmit={(e) => e.preventDefault()} className=' w-3/6 p-24 rounded-lg absolute mx-auto right-0 left-0 my-32 '>
-        <h1 className='text-3xl font-bold text-black mb-4'>{isSignInForm ? "Sign In" : "Sign Up" }</h1>
+      <form onSubmit={(e) => e.preventDefault()} className='xs:mr-64 w-3/6 p-24 rounded-lg absolute mx-auto right-0 left-0 my-32 '>
+        <h1 className='text-3xl font-bold text-black mb-4 xs:text-1xl '>{isSignInForm ? "Sign In" : "Sign Up" }</h1>
         {!isSignInForm && (<input type="text" placeholder="Full Name" className="p-2 m-2 rounded-lg" ref={name} />)}
         <input type="text" placeholder="Email Address" className="p-2 m-2 rounded-lg  text-black " ref={email} />
         <input type="password" placeholder="Password" className="p-2 m-2 rounded-lg" ref={password} />
         <p className='font-bold text-red-600 p-4 mt-0'>{errorMessage}</p>
         <button className='px-4 py-2 rounded-md bg-red-500 text-white font-semibold hover:bg-black transition-all ' onClick={handleButtonClick}> {isSignInForm ? "Sign In" : "Sign Up" }</button>
-        <p className='mt-6 ml-4 font-bold font-mono cursor-pointer' onClick={toggleSignIN}>{isSignInForm ? "Click Here to Sign Up" : "Already a User login" } </p>
+        <p className='mt-6 ml-4 font-bold font-mono cursor-pointer ' onClick={toggleSignIN}>{isSignInForm ? "Click Here to Sign Up" : "Already a User login" } </p>
       </form>
     </div>
   );
