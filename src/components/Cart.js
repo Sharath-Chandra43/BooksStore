@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem, clearCart } from '../utils/cartSlice';
+import { addItem, removeItem, clearCart, decrementItem, orderCompleted } from '../utils/cartSlice';
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  const orderSuccessMessage = useSelector((state) => state.cart.orderSuccessMessage);
+  const errorMessage = useSelector((state) => state.cart.errorMessage);
+
+  
   const dispatch = useDispatch();
+
+  const handleCheckout=()=>{
+    dispatch(orderCompleted())
+  }
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -21,7 +29,7 @@ const Cart = () => {
   };
 
   const handleDecrementItem = (isbn13) => {
-    dispatch(removeItem(isbn13));
+    dispatch(decrementItem(isbn13));
   };
 
   const totalPrice = cartItems.reduce((total, item) => {
@@ -59,7 +67,7 @@ const Cart = () => {
               <div className="flex flex-col">
                 <h2 className="text-xl font-semibold">Title: {item.title}</h2>
                 <p className="text-gray-500 mb-2">{item.subtitle}</p>
-                <p className="text-green-500 font-bold">Price: ₹{item.price}</p>
+                <p className="text-green-500 font-bold">Price: {item.price}</p>
                 <div className="flex items-center">
                   <button
                     className="bg-gray-300 text-gray-700 px-2 py-1 rounded-lg mr-2 hover:bg-gray-400 font-bold"
@@ -87,26 +95,49 @@ const Cart = () => {
           ))}
         </div>
       )}
+     
 
-      <div className="flex flex-col justify-end mt-4">
-        <div className="flex  justify-end mb-6 items-center">
-          <p className="text-lg font-semibold mr-4">Total Price:</p>
-         <p className="text-lg font-bold text-green-500">${totalPrice}</p>
-         </div>
-          <div className='flex'>
-            <button className="bg-red-500 text-white px-4 py-2 rounded-lg ml-auto hover:bg-red-600">CheckOut</button>
-          </div> 
-        </div>
-      
-        <div className='text-center'>
+  
+     {orderSuccessMessage && (
+      <div className="text-center font-bold">
+         {orderSuccessMessage}
+      </div>                                    // On checkout order success Message 
+    )}
+
+{errorMessage && (
+  <div className="font-bold">
+    {errorMessage}
+  </div>                                      // handling error  
+)}
+
+
+{cartItems.length > 0 ?                                   // Checkout and Total price details 
+(
+<div className="flex flex-col justify-end mt-4">
+  <div className="flex  justify-end mb-6 items-center">
+    <p className="text-lg font-semibold mr-4">Total Price:</p>
+   <p className="text-lg font-bold text-green-500">${totalPrice}</p>
+   </div>
+    <div className='flex'>
+      <button className="bg-red-500 text-white px-4 py-2 rounded-lg ml-auto hover:bg-red-600" onClick={handleCheckout}>CheckOut</button>
+    </div> 
+  </div>
+):(null) 
+}                                          
+                        
+
+
+    <div className='text-center'>
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4 hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4 mt-9 hover:bg-blue-600"
           onClick={handleClearCart}
         >
           Clear Cart
         </button>
       </div>
     </div>
+
+
   );
 };
 

@@ -6,9 +6,11 @@ import { auth } from '../utils/firebase';
 
 const Header = () => {
   const [searchText, setSearchText] = useState('');
+  const cartLength = useSelector((state) => state.cart.cartLength);
   const navigate = useNavigate();
   const cartItems = useSelector((store) => store.cart.items);
   const [isOpen, setIsOpen] = useState(false); // State for menu visibility
+  const [searchError,setSearchError]=useState(false);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -20,7 +22,13 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search?query=${searchText}`);
+    if (searchText.trim() === '') {
+      setSearchError(true); // Set error flag
+    } else {
+      setSearchError(false); // Clear error flag
+      navigate(`/search?query=${searchText}`);
+      setSearchText('');
+    }
   };
 
   const toggleMenu = () => {
@@ -28,7 +36,7 @@ const Header = () => {
   };
 
   return (
-    <div className='bg-yellow-500 px-4 flex flex-col '> {/* Base styles */}
+    <div className='bg-yellow-500 px-4 flex flex-col '> 
       <div className='flex justify-between items-center'> {/* Top row */}
         <Link to="/">
           <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png" alt='logo' className='w-full sm:w-[180px] xs:w-[120px]' />
@@ -48,7 +56,7 @@ const Header = () => {
                     bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-black hover:border-slate-300 shadow-sm focus:shadow
                   `}
                   placeholder='Search by Books,Authors..'
-                  aria-label="Search" // Added aria-label for accessibility
+                  aria-label="Search" 
                 />
               </div>
               <div className='absolute -right-4'>
@@ -76,6 +84,12 @@ const Header = () => {
           </form>
         </div>
 
+        {searchError && (
+          <div className="error-message">
+            Please enter a search term.
+          </div>
+        )}
+
         <div className='md:hidden flex items-center'> {/* Menu button for small screens */}
           <button className='text-white focus:outline-none' onClick={toggleMenu}>
             <img
@@ -100,7 +114,7 @@ const Header = () => {
           </Link>
           <Link to="/cart">
             <span className='absolute top-4 left-470 bg-red-700 text-white font-bold text-2xl rounded-full px-2'>
-              {cartItems.length}
+              {cartLength}
             </span>
             <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
           </Link>

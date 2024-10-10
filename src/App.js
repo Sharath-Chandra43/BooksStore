@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
-import { Provider, useDispatch } from 'react-redux';
-import appStore from './utils/appStore';
-import { createBrowserRouter, Outlet, RouterProvider, useNavigate } from 'react-router-dom';
+
+import { createBrowserRouter, RouterProvider  } from 'react-router-dom';
 import Login from './components/Login';
 import MainContainer from './components/MainContainer';
 import SearchedBooks from './components/SearchedBooks';
 import Cart from './components/Cart';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './utils/firebase';
-import { addUser, removeUser } from './utils/userSlice';
-import Header from './components/Header';
 import Body from './components/Body';
 import About from './components/About';
 import Contact from './components/Contact';
 import Books from './components/Books';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
  
@@ -57,6 +52,7 @@ const appRouter = createBrowserRouter([
         element: <About />,
       },
     ],
+    errorElement:<ErrorPage />
   },
   {
     path: "/login",
