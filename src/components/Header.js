@@ -142,7 +142,7 @@ const Header = () => {
           </Link>
           <Link to="/cart">
             <span className='absolute top-34 left-470 bg-red-700 text-white font-bold text-xl rounded-full px-2'>
-              {cartItems.length}
+              {cartLength}
             </span>
             <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
           </Link>
