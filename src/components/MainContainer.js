@@ -2,7 +2,7 @@ import Header from './Header';
 import TopContainer from './TopContainer';
 import BookContainer from './BookContainer';
 
-function MainPage() {
+function MainContainer() {
   return (
     <>
       <Header />
