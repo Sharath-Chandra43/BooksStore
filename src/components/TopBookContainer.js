@@ -1,8 +1,3 @@
-import React, { useState, useEffect } from 'react'; 
-import { BOOKS_API } from '../utils/constant';
-import { addItem } from '../utils/cartSlice';
-import { useDispatch } from 'react-redux';
-
 const TopBookContainer = () => {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true); // Track loading state
@@ -30,7 +25,7 @@ const TopBookContainer = () => {
   };
 
   return (
-    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-0"> {/* Set mb-0 to remove margin-bottom */}
+    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-0 mx-0"> {/* Set mb-0 and mx-0 to remove margin and padding */} 
       <div className="w-full md:flex md:justify-between items-center">
         {loading ? (
           <div className="w-full flex justify-center items-center">
