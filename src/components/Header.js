@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-teal-700 p-4 shadow-lg sticky top-0 z-50 mb-0">
+    <header className="bg-[#2C3E50] p-4 shadow-lg sticky top-0 z-50 mb-0">
       <div className="flex justify-between items-center">
         <Link to="/">
           <img
