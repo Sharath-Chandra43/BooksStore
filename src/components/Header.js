@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase'; // assuming you have your firebase configuration set up
+
 const Header = () => {
   const [searchText, setSearchText] = useState('');
   const cartLength = useSelector((state) => state.cart.cartLength);
@@ -27,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-teal-700 p-4 shadow-lg sticky top-0 z-50 mb-0"> {/* Added mb-0 to remove margin-bottom */}
+    <header className="bg-teal-700 p-4 shadow-lg sticky top-0 z-50 mb-0">
       <div className="flex justify-between items-center">
         <Link to="/">
           <img
