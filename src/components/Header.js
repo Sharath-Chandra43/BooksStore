@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg- #b2f5ea p-4 shadow-lg sticky top-0 z-50 mb-0"> {/* Added mb-0 to remove margin-bottom */}
+    <header className="bg-teal-200 p-4 shadow-lg sticky top-0 z-50 mb-0"> {/* Added mb-0 to remove margin-bottom */}
       <div className="flex justify-between items-center">
         <Link to="/">
           <img
