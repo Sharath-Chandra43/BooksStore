@@ -38,12 +38,7 @@ const Header = () => {
         
         {/* Logo */}
         <Link to="/" className="text-white font-extrabold text-3xl md:text-4xl tracking-wide shadow-lg hover:scale-105 transition-transform">
-        //  <img
-           // src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png"
-          //  alt="Bookstore Logo"
-           // className="w-32 md:w-44 transition-transform hover:scale-105"
-         // />
-     <span className="bg-gradient-to-r from-yellow-300 via-white to-yellow-500 bg-clip-text text-transparent">BookStore</span>
+           <span className="bg-gradient-to-r from-yellow-300 via-white to-yellow-500 bg-clip-text text-transparent">BookStore</span>
         </Link>
 
         {/* Search bar */}
