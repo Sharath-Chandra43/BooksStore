@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { BOOKS_API } from '../utils/constant';
 import { addItem } from '../utils/cartSlice';
 import { useDispatch } from 'react-redux';
 
 const TopBookContainer = () => {
-  const [book, setBook] = useState(null);
-  const [loading, setLoading] = useState(true); // Track loading state
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchRandomBook();
+    fetchRandomBooks();
   }, []);
 
-  const fetchRandomBook = async () => {
+  const fetchRandomBooks = async () => {
     try {
       const response = await fetch(BOOKS_API);
       const data = await response.json();
-      const randomBook = data.books[Math.floor(Math.random() * data.books.length)];
-      setBook(randomBook);
-      setLoading(false); // Set loading to false once data is fetched
+
+      // Shuffle and take first 3 books
+      const shuffled = data.books.sort(() => 0.5 - Math.random());
+      const selectedBooks = shuffled.slice(0, 3);
+
+      setBooks(selectedBooks);
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false); // Set loading to false in case of error
+      setLoading(false);
     }
   };
 
@@ -30,35 +34,38 @@ const TopBookContainer = () => {
   };
 
   return (
-    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-0"> {/* Set mb-0 to remove margin-bottom */}
-      <div className="w-full md:flex md:justify-between items-center">
-        {loading ? (
-          <div className="w-full flex justify-center items-center">
-            <div className="spinner-border animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
-          </div>
-        ) : (
-          <>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      {loading ? (
+        <div className="col-span-3 flex justify-center items-center">
+          <div className="spinner-border animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
+        </div>
+      ) : (
+        books.map((book, index) => (
+          <div
+            key={index}
+            className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <img
-              src={book?.image}
+              src={book.image}
               alt="book"
-              className="w-full md:w-1/2 object-cover sm:w-2/3 sm:pl-4 sm:ml-36 rounded-lg transform transition-transform duration-500 hover:scale-105"
+              className="w-full h-60 object-contain rounded-lg transform transition-transform duration-500 hover:scale-105"
             />
-            <div className="ml-7 md:p-10 sm:p-5 sm:text-center">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wide">{book?.title}</h1>
-              <h2 className="text-lg md:text-xl font-medium text-gray-800 border-2 border-gray-200 rounded-md p-2 m-4 bg-white opacity-90 hover:opacity-100 transition-opacity duration-300">
-                {book?.subtitle}
+            <div className="mt-4 text-center">
+              <h1 className="text-2xl font-extrabold text-gray-800">{book.title}</h1>
+              <h2 className="text-sm font-medium text-gray-800 bg-white px-2 py-1 mt-2 rounded-md shadow">
+                {book.subtitle}
               </h2>
-              <h3 className="text-xl md:text-2xl font-serif text-gray-900 xs:mb-7">{book?.price}</h3>
+              <h3 className="text-lg font-serif text-gray-900 mt-2">{book.price}</h3>
               <button
-                className="md:px-6 md:py-3 sm:px-4 sm:py-2 bg-yellow-600 text-white rounded-lg transform hover:bg-yellow-500 hover:text-black transition-all duration-300 ease-in-out hover:scale-105"
+                className="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 hover:scale-105"
                 onClick={() => handleAddItem(book)}
               >
                 Add to Cart
               </button>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };
