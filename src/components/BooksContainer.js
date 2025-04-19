@@ -25,18 +25,20 @@ const BooksContainer = () => {
 
   return (
     <>
-       <h1 className="font-bold md:text-2xl text-center xs:text-4xl xs:mt-32">New Collections</h1>
+      <h1 className="font-extrabold md:text-3xl xs:text-4xl text-center text-white mt-32 px-4 py-6 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-md shadow-lg">
+        New Collections
+      </h1>
       <div
-        className={`grid gap-4 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center px-4 py-12 `} 
+        className={`grid gap-6 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center px-4 py-12 bg-gradient-to-r from-teal-50 via-green-100 to-blue-50`}
       >
         {newBooks === null ? (
           <Loader />
         ) : newBooks.length === 0 ? (
-          <p>No results found.</p>
+          <p className="text-center text-lg font-medium text-gray-700">No results found.</p>
         ) : (
           newBooks.map((book) => (
-            <Link to= {"/books/"+book.isbn13} key={book.isbn13}>
-              <BookCard booksData={book}  />
+            <Link to={"/books/" + book.isbn13} key={book.isbn13}>
+              <BookCard booksData={book} />
             </Link>
           ))
         )}
