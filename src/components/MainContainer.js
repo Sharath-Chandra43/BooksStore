@@ -4,9 +4,9 @@ import BooksContainer from './BooksContainer'
 
 const MainContainer = () => {
   return (
-    <div>
+    <div className="bg-gray-50 p-6 rounded-lg shadow-md">
         <TopBookContainer />
-        <BooksContainer/>
+        <BooksContainer />
     </div>
   )
 }
