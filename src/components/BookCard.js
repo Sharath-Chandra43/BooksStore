@@ -11,7 +11,7 @@ const BookCard = ({ booksData }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between rounded-2xl hover:bg-blue-500 overflow-hidden border border-gray-200 bg-white hover:bg-blue-50 transition-all duration-300 m-4 p-4 w-full max-w-xs md:max-w-sm shadow-md hover:shadow-xl cursor-pointer">
+    <div className="flex flex-col justify-between rounded-2xl hover:bg-blue-300 overflow-hidden border border-gray-200 bg-white hover:bg-blue-50 transition-all duration-300 m-4 p-4 w-full max-w-xs md:max-w-sm shadow-md hover:shadow-xl cursor-pointer">
       <img
         src={image}
         alt="book cover"
