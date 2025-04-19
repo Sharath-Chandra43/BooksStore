@@ -1,14 +1,16 @@
-import React from 'react'
-import TopBookContainer from './TopBookContainer'
-import BooksContainer from './BooksContainer'
+import Header from './Header';
+import TopContainer from './TopContainer';
+import BookContainer from './BookContainer';
 
-const MainContainer = () => {
+function MainPage() {
   return (
-    <div className="bg-gray-50 p-6 rounded-lg shadow-md space-y-6">
-        <TopBookContainer />
-        <BooksContainer />
-    </div>
-  )
+    <>
+      <Header />
+      <div className="pt-20">
+        <TopContainer />
+        <BookContainer />
+      </div>
+    </>
+  );
 }
 
-export default MainContainer;
