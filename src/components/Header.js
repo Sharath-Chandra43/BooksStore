@@ -97,9 +97,9 @@ const Header = () => {
 
         {/* Links for desktop */}
         <nav className="hidden md:flex items-center space-x-6 ml-6">
-          <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
-          <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
-          <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+          <Link to="/" className="text-white hover:text-red-900 hover:underline transition">Home</Link>
+          <Link to="/about" className="text-white hover:text-red-900 hover:underline transition">About</Link>
+          <Link to="/contact" className="text-white hover:text-red-900 hover:underline transition">Contact</Link>
         </nav>
 
         {/* Profile, Cart, Logout */}
