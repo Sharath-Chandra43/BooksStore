@@ -23,7 +23,7 @@ const Header = () => {
       setSearchError(true);
     } else {
       setSearchError(false);
-      navigate(/search?query=${searchText});
+      navigate(`/search?query=${searchText}`);
       setSearchText('');
     }
   };
@@ -48,7 +48,7 @@ const Header = () => {
         {/* Search bar */}
         <form
           onSubmit={handleSearch}
-          className={${isOpen ? 'block' : 'hidden'} md:block}
+          className={`${isOpen ? 'block' : 'hidden'} md:block`}
         >
           <div className="flex items-center relative">
             <input
