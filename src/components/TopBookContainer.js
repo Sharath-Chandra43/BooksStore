@@ -43,7 +43,7 @@ const TopBookContainer = () => {
         books.map((book, index) => (
           <div
             key={index}
-            className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-700 to-black rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-green-700 via-black-700 to-black rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src={book.image}
@@ -54,7 +54,7 @@ const TopBookContainer = () => {
               <h1 className="text-2xl font-extrabold text-white">{book.title}</h1>
               <h3 className="text-lg font-serif text-red mt-2">{book.price}</h3>
               <button
-                className="mt-3 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 hover:scale-105"
+                className="mt-3 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 hover:scale-105"
                 onClick={() => handleAddItem(book)}
               >
                 Add to Cart
