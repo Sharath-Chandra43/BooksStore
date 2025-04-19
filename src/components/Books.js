@@ -24,7 +24,7 @@ const Books = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-200 text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-blue via-slate-200 to-slate-500 text-gray-800">
       {BooksIsbn13 ? (
         <>
           {/* Book details section */}
