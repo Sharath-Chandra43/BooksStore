@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 p-4 shadow-lg sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-[#8B5C5D] via-[#7E4B3B] to-[#4E3629] p-4 shadow-lg sticky top-0 z-50">
       <div className="flex justify-between items-center">
         
         {/* Logo */}
@@ -56,7 +56,7 @@ const Header = () => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search books, authors..."
-              className="xs:w-[150px] sm:w-[250px] md:w-[300px] bg-white text-black placeholder-gray-500 text-sm rounded-l-md py-2 px-4 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-yellow-600 transition"
+              className="xs:w-[150px] sm:w-[250px] md:w-[300px] bg-white text-black placeholder-gray-500 text-sm rounded-l-md py-2 px-4 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-[#8B5C5D] transition"
             />
             <button
               type="submit"
