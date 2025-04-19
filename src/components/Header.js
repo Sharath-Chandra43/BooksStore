@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#D5A6D0] via-[#B6A3A2] to-[#9A8C8C] p-4 shadow-lg sticky top-0 z-50">
+    <header className="bg- #b2f5ea p-4 shadow-lg sticky top-0 z-50">
       <div className="flex justify-between items-center">
         
         {/* Logo with shadow for better visibility */}
