@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BookCard from './BookCard';
-// import ShimmerUI from './ShimmerUI'; // Assuming ShimmerUI component
 import { BOOKS_API } from '../utils/constant';
 import { Link } from 'react-router-dom';
 import Loader from './Loader';
@@ -25,7 +24,7 @@ const BooksContainer = () => {
 
   return (
     <>
-      <h1 className="font-extrabold md:text-3xl xs:text-4xl text-center text-white mt-32 px-4 py-6 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-md shadow-lg">
+      <h1 className="font-extrabold md:text-3xl xs:text-4xl text-center text-white mt-0 px-4 py-6 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-md shadow-lg">
         New Collections
       </h1>
       <div
