@@ -37,9 +37,11 @@ const Header = () => {
       <div className="flex justify-between items-center">
         
         {/* Logo */}
-        <Link to="/" className="text-white font-extrabold text-3xl md:text-4xl tracking-wide shadow-lg hover:scale-105 transition-transform">
-           <span className="bg-gradient-to-r from-yellow-300 via-white to-yellow-500 bg-clip-text text-transparent">BookStore</span>
-        </Link>
+       <Link to="/" className="transition-transform hover:scale-105">
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide bg-gradient-to-r from-yellow-300 via-white to-yellow-500 bg-clip-text text-transparent shadow-md">
+          BookStore
+        </h1>
+      </Link>
 
         {/* Search bar */}
         <form
