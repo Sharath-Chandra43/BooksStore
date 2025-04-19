@@ -105,7 +105,7 @@ const Header = () => {
         {/* Profile, Cart, Logout */}
         <div className="hidden md:flex items-center space-x-4 ml-6">
           <Link to="/cart" className="relative">
-            <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs font-bold rounded-full px-2">
+            <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-[10px] font-semibold rounded-full px-2 py-0.5 shadow-md border border-white">
               {cartLength}
             </span>
             <img
