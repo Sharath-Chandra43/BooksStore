@@ -30,7 +30,7 @@ const TopBookContainer = () => {
   };
 
   return (
-    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="w-full md:flex md:justify-between items-center">
         {loading ? (
           // Display a loading spinner while fetching the data
@@ -45,7 +45,7 @@ const TopBookContainer = () => {
               className="w-full md:w-1/2 object-cover sm:w-2/3 sm:pl-4 sm:ml-36 rounded-lg transform transition-transform duration-500 hover:scale-105"
             />
             <div className="ml-7 md:p-10 sm:p-5 sm:text-center">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-wide">{book?.title}</h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wide">{book?.title}</h1>
               <h2 className="text-lg md:text-xl font-medium text-gray-800 border-2 border-gray-200 rounded-md p-2 m-4 bg-white opacity-90 hover:opacity-100 transition-opacity duration-300">
                 {book?.subtitle}
               </h2>
