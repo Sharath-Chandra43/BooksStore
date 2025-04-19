@@ -43,7 +43,7 @@ const TopBookContainer = () => {
         books.map((book, index) => (
           <div
             key={index}
-            className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-700 to-black rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src={book.image}
