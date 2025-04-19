@@ -30,10 +30,9 @@ const TopBookContainer = () => {
   };
 
   return (
-    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="border border-cyan-50 flex flex-col items-center p-6 bg-gradient-to-r from-blue-200 via-teal-300 to-yellow-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-0"> {/* Set mb-0 to remove margin-bottom */}
       <div className="w-full md:flex md:justify-between items-center">
         {loading ? (
-          // Display a loading spinner while fetching the data
           <div className="w-full flex justify-center items-center">
             <div className="spinner-border animate-spin border-t-4 border-blue-500 rounded-full w-16 h-16"></div>
           </div>
