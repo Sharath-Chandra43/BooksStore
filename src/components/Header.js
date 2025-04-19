@@ -137,9 +137,9 @@ const Header = () => {
       {isOpen && (
         <div className="md:hidden mt-4 space-y-4">
           <nav className="flex flex-col items-start pl-2 space-y-2">
-            <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
-            <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
-            <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+            <Link to="/" className="text-white text-base hover:text-red-900 hover:underline transition">Home</Link>
+            <Link to="/about" className="text-white text-base hover:text-red-900 hover:underline transition">About</Link>
+            <Link to="/contact" className="text-white text-base hover:text-red-900 hover:underline transition">Contact</Link>
           </nav>
 
           <div className="flex items-center space-x-4 mt-4 pl-2">
