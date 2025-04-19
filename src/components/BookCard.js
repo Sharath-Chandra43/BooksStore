@@ -11,14 +11,14 @@ const BookCard = ({ booksData }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between rounded-2xl hover:bg-blue-400 overflow-hidden border border-gray-200 bg-white hover:bg-blue-50 transition-all duration-300 m-4 p-4 w-full max-w-xs md:max-w-sm shadow-md hover:shadow-xl cursor-pointer">
+    <div className="flex flex-col justify-between rounded-2xl overflow-hidden border border-gray-200 bg-white hover:bg-blue-50 transition-all duration-300 m-4 p-4 w-full max-w-xs md:max-w-sm shadow-md hover:shadow-xl cursor-pointer">
       <img
         src={image}
         alt="book cover"
-        className="w-full h-64 object-contain mb-4 transition-transform duration-300 hover:scale-105"
+        className="w-full h-64 object-cover mb-4 transition-transform duration-300 hover:scale-105"
       />
 
-      <div className="flex flex-col gap-2 px-2">
+      <div className="flex flex-col gap-2 px-2 flex-grow">
         <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
         <p className="text-sm text-orange-600 font-medium">{subtitle}</p>
         <p className="text-lg font-bold text-green-600">{price}</p>
