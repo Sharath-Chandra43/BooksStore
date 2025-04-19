@@ -36,12 +36,12 @@ const Header = () => {
     <header className="bg-gradient-to-r from-[#8B5C5D] via-[#7E4B3B] to-[#4E3629] p-4 shadow-lg sticky top-0 z-50">
       <div className="flex justify-between items-center">
         
-        {/* Logo */}
+        {/* Logo with shadow for better visibility */}
         <Link to="/">
           <img
             src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png"
             alt="Bookstore Logo"
-            className="w-32 md:w-44 transition-transform hover:scale-105"
+            className="w-32 md:w-44 transition-transform hover:scale-105 shadow-lg"
           />
         </Link>
 
