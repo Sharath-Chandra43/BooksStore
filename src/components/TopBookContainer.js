@@ -52,7 +52,7 @@ const TopBookContainer = () => {
             />
             <div className="mt-4 text-center">
               <h1 className="text-2xl font-extrabold text-white">{book.title}</h1>
-              <h3 className="text-lg font-serif text-red mt-2">{book.price}</h3>
+              <h3 className="text-xl font-serif text-white mt-2">{book.price}</h3>
               <button
                 className="mt-3 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-yellow-500 hover:text-black transition-all duration-300 hover:scale-105"
                 onClick={() => handleAddItem(book)}
