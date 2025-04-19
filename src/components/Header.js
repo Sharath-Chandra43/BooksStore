@@ -1,9 +1,3 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase';
-
 const Header = () => {
   const [searchText, setSearchText] = useState('');
   const cartLength = useSelector((state) => state.cart.cartLength);
@@ -33,10 +27,8 @@ const Header = () => {
   };
 
   return (
-    <header className="bg- #b2f5ea p-4 shadow-lg sticky top-0 z-50">
+    <header className="bg- #b2f5ea p-4 shadow-lg sticky top-0 z-50 mb-0"> {/* Added mb-0 to remove margin-bottom */}
       <div className="flex justify-between items-center">
-        
-        {/* Logo with shadow for better visibility */}
         <Link to="/">
           <img
             src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png"
@@ -45,7 +37,6 @@ const Header = () => {
           />
         </Link>
 
-        {/* Search bar */}
         <form
           onSubmit={handleSearch}
           className={`${isOpen ? 'block' : 'hidden'} md:block`}
@@ -81,7 +72,6 @@ const Header = () => {
           )}
         </form>
 
-        {/* Menu toggle button for mobile */}
         <button
           className="md:hidden text-white focus:outline-none ml-2"
           onClick={toggleMenu}
@@ -95,14 +85,12 @@ const Header = () => {
           />
         </button>
 
-        {/* Links for desktop */}
         <nav className="hidden md:flex items-center space-x-6 ml-6">
           <Link to="/" className="text-white hover:text-gray-800 transition">Home</Link>
           <Link to="/about" className="text-white hover:text-gray-800 transition">About</Link>
           <Link to="/contact" className="text-white hover:text-gray-800 transition">Contact</Link>
         </nav>
 
-        {/* Profile, Cart, Logout */}
         <div className="hidden md:flex items-center space-x-4 ml-6">
           <Link to="/cart" className="relative">
             <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs font-bold rounded-full px-2">
@@ -133,7 +121,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden mt-4 space-y-4">
           <nav className="flex flex-col items-start pl-2 space-y-2">
