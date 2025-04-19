@@ -1,158 +1,180 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth'; // Assuming you're using Firebase for authentication
+import { signOut } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
 const Header = () => {
   const [searchText, setSearchText] = useState('');
   const cartLength = useSelector((state) => state.cart.cartLength);
   const navigate = useNavigate();
-  const cartItems = useSelector((store) => store.cart.items);
-  const [isOpen, setIsOpen] = useState(false); // State for menu visibility
-  const [searchError,setSearchError]=useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchError, setSearchError] = useState(false);
 
   const handleSignOut = () => {
-    signOut(auth).then(() => {
-      navigate('/login');
-    }).catch((error) => {
-      // An error happened.
-    });
+    signOut(auth)
+      .then(() => navigate('/login'))
+      .catch((error) => console.error('Sign-out error', error));
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchText.trim() === '') {
-      setSearchError(true); // Set error flag
+      setSearchError(true);
     } else {
-      setSearchError(false); // Clear error flag
+      setSearchError(false);
       navigate(`/search?query=${searchText}`);
       setSearchText('');
     }
   };
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen); // Toggle menu visibility on button click
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div className='bg-yellow-500 px-4 flex flex-col '> 
-      <div className='flex justify-between items-center'> {/* Top row */}
+    <header className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 p-4 shadow-md sticky top-0 z-50">
+      <div className="flex justify-between items-center">
+        
+        {/* Logo */}
         <Link to="/">
-          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png" alt='logo' className='w-full sm:w-[180px] xs:w-[120px]' />
+          <img
+            src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726751402/bookstore-removebg-preview_cosu58.png"
+            alt="Bookstore Logo"
+            className="w-32 md:w-44 transition-transform hover:scale-105"
+          />
         </Link>
 
-        <div className='flex items-center'> {/* Search bar for all screens */}
-          <form onSubmit={handleSearch} className={`${isOpen ? 'block' : 'hidden'} md:block`}>
-            <div className='flex relative'>
-              <div>
-                <input
-                  type="search"
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                  className={`
-                    xs:w-[150px]  /* Extra small screens (up to 359px) */
-                    sm:w-[250px]  /* Small screens (360px up to 639px) */
-                    bg-white placeholder:text-black text-slate-700 text-sm border border-slate-200 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:text-black hover:border-slate-300 shadow-sm focus:shadow
-                  `}
-                  placeholder='Search by Books,Authors..'
-                  aria-label="Search" 
+        {/* Search bar */}
+        <form
+          onSubmit={handleSearch}
+          className={`${isOpen ? 'block' : 'hidden'} md:block`}
+        >
+          <div className="flex items-center relative">
+            <input
+              type="search"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              placeholder="Search books, authors..."
+              className="xs:w-[150px] sm:w-[250px] md:w-[300px] bg-white text-black placeholder-gray-500 text-sm rounded-l-md py-2 px-4 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-yellow-600 transition"
+            />
+            <button
+              type="submit"
+              className="bg-gray-800 hover:bg-gray-700 text-white rounded-r-md p-2 flex items-center transition"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                  clipRule="evenodd"
                 />
-              </div>
-              <div className='absolute -right-4'>
-                <button
-                  type="submit"
-                  className={`
-                    flex items-center rounded bg-slate-800 py-1 px-0 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none
-                  `}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="w-8 h-7 mr-3 ml-3"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        {searchError && (
-          <div className="error-message">
-            Please enter a search term.
+              </svg>
+            </button>
           </div>
-        )}
+          {searchError && (
+            <p className="text-red-600 text-xs mt-1">Please enter a search term.</p>
+          )}
+        </form>
 
-        <div className='md:hidden flex items-center'> {/* Menu button for small screens */}
-          <button className='text-white focus:outline-none' onClick={toggleMenu}>
+        {/* Menu toggle button for mobile */}
+        <button
+          className="md:hidden text-white focus:outline-none ml-2"
+          onClick={toggleMenu}
+        >
+          <img
+            src={
+              isOpen
+                ? 'https://res.cloudinary.com/dwhafna5q/image/upload/v1728292325/close-512__1_-removebg-preview_lasgbt.png'
+                : 'https://res.cloudinary.com/dwhafna5q/image/upload/v1727989973/menu-removebg-preview_hbhdrg.png'
+            }
+            alt="Menu Icon"
+            className="w-8 h-8"
+          />
+        </button>
+
+        {/* Links for desktop */}
+        <nav className="hidden md:flex items-center space-x-6 ml-6">
+          <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
+          <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
+          <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+        </nav>
+
+        {/* Profile, Cart, Logout */}
+        <div className="hidden md:flex items-center space-x-4 ml-6">
+          <Link to="/cart" className="relative">
+            <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs font-bold rounded-full px-2">
+              {cartLength}
+            </span>
             <img
-              src={isOpen ? 'https://res.cloudinary.com/dwhafna5q/image/upload/v1728292325/close-512__1_-removebg-preview_lasgbt.png' : 'https://res.cloudinary.com/dwhafna5q/image/upload/v1727989973/menu-removebg-preview_hbhdrg.png'}
-              alt={isOpen ? 'Menu' : 'Cancel'}
-              className="w-8 h-7 mr-3 ml-7"
+              src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png"
+              alt="Cart"
+              className="w-10 hover:scale-110 transition-transform"
+            />
+          </Link>
+
+          <Link>
+            <img
+              src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png"
+              alt="Profile"
+              className="w-10 hover:scale-110 transition-transform"
+            />
+          </Link>
+
+          <button onClick={handleSignOut}>
+            <img
+              src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png"
+              alt="Logout"
+              className="w-10 hover:scale-110 transition-transform"
             />
           </button>
         </div>
-
-        <div className='hidden md:flex items-center'> {/* Navigation links for large screens */}
-          <ul className='flex space-x-4'>
-            <li><Link to="/" className='text-white hover:text-gray-800'>Home</Link></li>
-            <li><Link to="/about" className='text-white hover:text-gray-800'>About</Link></li>
-            <li><Link to="/contact" className='text-white hover:text-gray-800'>Contact</Link></li>
-          </ul>
-        </div>
-
-        <div className='flex flex-row-reverse items-center sm:hidden xs:hidden md:flex hidden'>
-          <Link to="/login">
-          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
-          </Link>
-          <Link to="/cart">
-            <span className='absolute top-4 left-470 bg-red-700 text-white font-bold text-2xl rounded-full px-2'>
-              {cartLength}
-            </span>
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
-          </Link>
-          <Link>
-            <span>
-              <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
-            </span>
-          </Link>
-        </div>
       </div>
 
-      {/* Menu content for small screens (to be displayed when the menu button is clicked) */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <ul className='mt-4  flex justify-start '>
-          <li><Link to="/" className='text-white hover:text-gray-800'>Home</Link></li>
-          <li><Link to="/about" className='text-white hover:text-gray-800 ml-2'>About</Link></li>
-          <li><Link to="/contact" className='text-white hover:text-gray-800 ml-2'>Contact</Link></li>
-        </ul>
-      </div>
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden mt-4 space-y-4">
+          <nav className="flex flex-col items-start pl-2 space-y-2">
+            <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
+            <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
+            <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+          </nav>
 
+          <div className="flex items-center space-x-4 mt-4 pl-2">
+            <Link to="/cart" className="relative">
+              <span className="absolute -top-2 -right-2 bg-red-700 text-white text-xs font-bold rounded-full px-2">
+                {cartLength}
+              </span>
+              <img
+                src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png"
+                alt="Cart"
+                className="w-10 hover:scale-110 transition-transform"
+              />
+            </Link>
 
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden flex mt-5 `}>
-          <Link to="/login">
-          <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png" alt='logout' className='w-[80px] h-min px-4 py-3 cursor-pointer' onClick={handleSignOut} />
-          </Link>
-          <Link to="/cart">
-            <span className='absolute top-34 left-470 bg-red-700 text-white font-bold text-xl rounded-full px-2'>
-              {cartLength}
-            </span>
-            <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726757286/cart-removebg-preview_vl3nsm.png" alt='cart' className='w-[80px] h-min  m-2' />
-          </Link>
-          <Link>
-            <span>
-              <img src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png" className='w-[80px] h-min px-2 py-5' alt='login' />
-            </span>
-          </Link>
+            <Link>
+              <img
+                src="https://res.cloudinary.com/dwhafna5q/image/upload/v1726756818/png-transparent-computer-icons-user-profile-encapsulated-postscript-icon-black-rectangle-black-%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-removebg-preview_op8pvh.png"
+                alt="Profile"
+                className="w-10 hover:scale-110 transition-transform"
+              />
+            </Link>
+
+            <button onClick={handleSignOut}>
+              <img
+                src="https://res.cloudinary.com/dwhafna5q/image/upload/v1727754963/logout-icon-for-any-purposes-vector-removebg-preview_lmwkyj.png"
+                alt="Logout"
+                className="w-10 hover:scale-110 transition-transform"
+              />
+            </button>
+          </div>
         </div>
-    </div>
+      )}
+    </header>
   );
 };
 
