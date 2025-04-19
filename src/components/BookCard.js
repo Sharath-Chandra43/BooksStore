@@ -2,22 +2,34 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../utils/cartSlice';
 
-
 const BookCard = ({ booksData }) => {
   const { image, title, subtitle, price, isbn13 } = booksData;
+  const dispatch = useDispatch();
 
-  
+  const handleAddToCart = () => {
+    dispatch(addItem(booksData));
+  };
+
   return (
-    <div className="rounded overflow-hidden border border-zinc-300 hover:border-zinc-400 cursor-pointer m-4 p-3 md:w-[350px] shadow-lg xs:w-[70%] xs:p-4">
-      <div className="">
-        <img src={image} alt="bookimage" className="w-[80%] m-3 object-cover xs:w-56" />
-        <div className="md:ml-4">
-          <div className="font-normal mb-2 xs:text-xl xs:font-bold">{title}</div>
-          <p className="text-base font-thin mb-4 text-orange-700 xs:text-xl">{subtitle}</p>
-          <p className="text-green-500 font-bold font-serif text-xl xs:text-xl">{price}</p>
-          
-        </div>
+    <div className="flex flex-col justify-between rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 bg-white m-4 p-4 w-full max-w-xs md:max-w-sm shadow-md">
+      <img
+        src={image}
+        alt="book cover"
+        className="w-full h-64 object-contain mb-4 transition-transform duration-300 hover:scale-105"
+      />
+
+      <div className="flex flex-col gap-2 px-2">
+        <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
+        <p className="text-sm text-orange-600 font-medium">{subtitle}</p>
+        <p className="text-lg font-bold text-green-600">{price}</p>
       </div>
+
+      <button
+        onClick={handleAddToCart}
+        className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-xl hover:bg-blue-700 transition-colors duration-200 font-medium"
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
