@@ -58,10 +58,10 @@ const cartSlice=createSlice({
         0
       );
     },
-      clearCart:(state,action)=>{
-            state.items.length=0;
-      }, 
-    
+     clearCart: (state) => {
+    state.items = [];
+    state.cartLength = 0;
+},
       orderCompleted:(state,action)=>{
         state.items = [];
       state.cartLength = 0;
