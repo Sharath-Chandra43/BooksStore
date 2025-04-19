@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#8B5C5D] via-[#7E4B3B] to-[#4E3629] p-4 shadow-lg sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-[#D5A6D0] via-[#B6A3A2] to-[#9A8C8C] p-4 shadow-lg sticky top-0 z-50">
       <div className="flex justify-between items-center">
         
         {/* Logo with shadow for better visibility */}
@@ -56,11 +56,11 @@ const Header = () => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search books, authors..."
-              className="xs:w-[150px] sm:w-[250px] md:w-[300px] bg-white text-black placeholder-gray-500 text-sm rounded-l-md py-2 px-4 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-[#8B5C5D] transition"
+              className="xs:w-[150px] sm:w-[250px] md:w-[300px] bg-white text-black placeholder-gray-500 text-sm rounded-l-md py-2 px-4 focus:outline-none border border-gray-300 focus:ring-2 focus:ring-[#D5A6D0] transition"
             />
             <button
               type="submit"
-              className="bg-gray-800 hover:bg-gray-700 text-white rounded-r-md p-2 flex items-center transition"
+              className="bg-[#C2C2C2] hover:bg-[#A9A9A9] text-black rounded-r-md p-2 flex items-center transition"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,11 +87,9 @@ const Header = () => {
           onClick={toggleMenu}
         >
           <img
-            src={
-              isOpen
-                ? 'https://res.cloudinary.com/dwhafna5q/image/upload/v1728292325/close-512__1_-removebg-preview_lasgbt.png'
-                : 'https://res.cloudinary.com/dwhafna5q/image/upload/v1727989973/menu-removebg-preview_hbhdrg.png'
-            }
+            src={isOpen
+              ? 'https://res.cloudinary.com/dwhafna5q/image/upload/v1728292325/close-512__1_-removebg-preview_lasgbt.png'
+              : 'https://res.cloudinary.com/dwhafna5q/image/upload/v1727989973/menu-removebg-preview_hbhdrg.png'}
             alt="Menu Icon"
             className="w-8 h-8"
           />
@@ -99,9 +97,9 @@ const Header = () => {
 
         {/* Links for desktop */}
         <nav className="hidden md:flex items-center space-x-6 ml-6">
-          <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
-          <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
-          <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+          <Link to="/" className="text-white hover:text-gray-800 transition">Home</Link>
+          <Link to="/about" className="text-white hover:text-gray-800 transition">About</Link>
+          <Link to="/contact" className="text-white hover:text-gray-800 transition">Contact</Link>
         </nav>
 
         {/* Profile, Cart, Logout */}
@@ -139,9 +137,9 @@ const Header = () => {
       {isOpen && (
         <div className="md:hidden mt-4 space-y-4">
           <nav className="flex flex-col items-start pl-2 space-y-2">
-            <Link to="/" className="text-white hover:text-gray-900 transition">Home</Link>
-            <Link to="/about" className="text-white hover:text-gray-900 transition">About</Link>
-            <Link to="/contact" className="text-white hover:text-gray-900 transition">Contact</Link>
+            <Link to="/" className="text-white hover:text-gray-800 transition">Home</Link>
+            <Link to="/about" className="text-white hover:text-gray-800 transition">About</Link>
+            <Link to="/contact" className="text-white hover:text-gray-800 transition">Contact</Link>
           </nav>
 
           <div className="flex items-center space-x-4 mt-4 pl-2">
